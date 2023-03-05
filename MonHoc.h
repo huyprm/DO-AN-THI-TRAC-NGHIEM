@@ -6,10 +6,10 @@
 #define MAX_MONHOC 300
 
 struct MONHOC {
-	string MaMH;
-	string TenMH;
+	char MaMH[15];
+	char TenMH[255];
 };
-struct List_MONHOC {
+struct List_MONHOC { 
 	int n;
 	MONHOC nodeMONHOC[MAX_MONHOC];
 };
@@ -29,9 +29,9 @@ void printMonHoc(DSMH dsMonHoc) {
 		cout << "Ten mon hoc: " << dsMonHoc.nodeMONHOC[i].TenMH << endl;
 	}
 }
-int ktMa(DSMH dsMonHoc, string Ma) {
+int ktMa(DSMH dsMonHoc, char Ma[]) {
 	for (int i = 0; i < dsMonHoc.n; i++) {
-		if (dsMonHoc.nodeMONHOC[i].MaMH == Ma)return i;
+		if (strcmp(dsMonHoc.nodeMONHOC[i].MaMH , Ma)==0)return i;
 	}
 	return -1;
 }
@@ -49,13 +49,13 @@ void deleteMonHoc(DSMH& dsMonHoc) {
 	if (isEmpty(dsMonHoc)) {
 		return;
 	}
-	string MaMH;
+	char MaMH[15];
 	cout << "Nhap ma mon hoc can xoa: ";
 	cin >> MaMH;
 	InHoa(MaMH);
 	if (ktMa(dsMonHoc, MaMH) != -1) {
 		for (int i = 0; i < dsMonHoc.n; i++) {
-			if (dsMonHoc.nodeMONHOC[i].MaMH == MaMH) {
+			if (strcmp(dsMonHoc.nodeMONHOC[i].MaMH,MaMH)==0) {
 				for (int j = i; j < dsMonHoc.n - 1; j++) {
 					dsMonHoc.nodeMONHOC[j] = dsMonHoc.nodeMONHOC[j + 1];
 				}
@@ -65,23 +65,24 @@ void deleteMonHoc(DSMH& dsMonHoc) {
 	}
 	else return;
 }
-void adjustInfo_MonHoc(DSMH& dsMonHoc) {
-	string MaMH;
-	cout << "Nhap ma mon hoc can chinh sua: ";
-	cin >> MaMH;
-	if (ktMa(dsMonHoc, MaMH)!=-1) {
-		int n = ktMa(dsMonHoc, MaMH);
-		string TenMH;
-		cout << "Nhap ma mon hoc: ";
-		cin >> MaMH;
-		dsMonHoc.nodeMONHOC[n].MaMH = MaMH;
-		cout << "Nhap ten mon hoc: ";
-		cin >> TenMH;
-		dsMonHoc.nodeMONHOC[n].TenMH = TenMH;
-	}
-	else {
-		cout << "Ma khong ton tai";
-	}
-}
+//void adjustInfo_MonHoc(DSMH& dsMonHoc) {
+//	char MaMH[15];
+//	cout << "Nhap ma mon hoc can chinh sua: ";
+//	cin >> MaMH;
+//	if (ktMa(dsMonHoc, MaMH)!=-1) {
+//		int n = ktMa(dsMonHoc, MaMH);
+//		char TenMH[255];
+//		cout << "Nhap ma mon hoc: ";
+//		cin >> MaMH;
+//		dsMonHoc.nodeMONHOC[n].MaMH=
+//		dsMonHoc.nodeMONHOC[n].MaMH = MaMH;
+//		cout << "Nhap ten mon hoc: ";
+//		cin >> TenMH;
+//		dsMonHoc.nodeMONHOC[n].TenMH = TenMH;
+//	}
+//	else {
+//		cout << "Ma khong ton tai";
+//	}
+//}
 
 

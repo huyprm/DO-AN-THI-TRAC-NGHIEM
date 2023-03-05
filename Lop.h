@@ -94,7 +94,6 @@ void XoaLop(DSLOP& dsLop) {
 		cout << "Da xoa thanh cong!" << endl;
 		system("pause");
 	}
-	/*dsLop.lh[1]->MALOP = "hdhfak";*/
 }
 void hieuchinhLop(DSLOP& dsLop) {
 	cout << "Nhap Ma Lop muon hieu chinh:" << endl;

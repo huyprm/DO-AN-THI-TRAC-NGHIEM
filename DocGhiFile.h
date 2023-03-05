@@ -7,8 +7,8 @@ using namespace std;
 
 // Doc luu file MonHoc.h
 void Doc_Thong_Tin_Mon_Hoc(ifstream & fileIn, MONHOC & MH) {
-	getline(fileIn, MH.MaMH, '\n');
-	getline(fileIn,MH.TenMH,'\n');
+	fileIn.getline(MH.MaMH,sizeof(MH.MaMH), '\n');
+	fileIn.getline(MH.TenMH,sizeof(MH.TenMH),'\n');
 }
 void Doc_Danh_Sach_Mon_Hoc(DSMH & dsMonHoc) {
 	ifstream fileIn("DanhSachMonHoc.txt",ios::in);

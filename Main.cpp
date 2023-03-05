@@ -107,8 +107,8 @@ int main()
 	cout << "-----------------------------\n";
 	deleteMonHoc(ds);
 	Luu_Danh_Sach_Mon_Hoc(ds);
-	adjustInfo_MonHoc(ds);
-	Luu_Danh_Sach_Mon_Hoc(ds);
+	/*adjustInfo_MonHoc(ds);
+	Luu_Danh_Sach_Mon_Hoc(ds);*/
 	printMonHoc(ds);
 	return 0;
 }
