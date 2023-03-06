@@ -17,12 +17,16 @@ struct DanhSachLop {
 	int soLuong = 0;
 };
 typedef struct DanhSachLop DSLOP;
+
+
 bool isFull(DSLOP dsLop) {
 	return(dsLop.soLuong == MAXLOP);
 }
+
 bool isEmpty(DSLOP dsLop) {
 	return(dsLop.soLuong == 0);
 }
+
 //ham kiem tra trung ma lop
 int ktTrungMALOP(char a[], DSLOP dsLop) {
 	for (int i = 0; i < dsLop.soLuong; i++) {
@@ -30,6 +34,7 @@ int ktTrungMALOP(char a[], DSLOP dsLop) {
 	}
 	return -1;
 }
+
 void themLop(DSLOP& dsLop, Lop lop) {
 	if (isFull(dsLop)) {
 		cout << "Lop da du so luong!" << endl;
@@ -51,27 +56,17 @@ void xuatDSLOP(DSLOP dsLop) {
 		cout << setw(16) << dsLop.lh[i]->MALOP << setw(51) << dsLop.lh[i]->TENLOP << setw(20) << dsLop.lh[i]->nienkhoa << endl;
 	}
 }
+
 //in ra danh sach lop co cung nien khoa nien khoa
-void Themlop(DSLOP& dsLop) {
-	Lop* p = new Lop;
-	cout << "Nhap ma lop: ";
-	cin.ignore();
-	cin.getline(p->MALOP, 16);
+void Themlop(DSLOP& dsLop, Lop *p) {
+	if (isFull(dsLop)) return;
+	if (ktTrungMALOP(p->MALOP, dsLop) != -1) return;
 	chuanHoa(p->MALOP);
-	cout << "Nhap ten lop: ";
-	cin.getline(p->TENLOP, 51);
 	chuanHoa(p->TENLOP);
-	cout << "Nhap nien khoa: ";
-	cin.getline(p->nienkhoa, 20);
 	dsLop.lh[dsLop.soLuong] = p;
 	dsLop.soLuong++;
 }
-int KTMALOP(char a[], DSLOP dslop) {
-	for (int i = 0; i < dslop.soLuong; i++) {
-		if (dslop.lh[i]->MALOP == a) return i;
-	}
-	return -1;
-}
+
 void XoaLop(DSLOP& dsLop) {
 	cout << "Neu Ma Lop da ton tai thi moi co the xoa!" << endl;
 	char a[16];
@@ -95,6 +90,7 @@ void XoaLop(DSLOP& dsLop) {
 		system("pause");
 	}
 }
+
 void hieuchinhLop(DSLOP& dsLop) {
 	cout << "Nhap Ma Lop muon hieu chinh:" << endl;
 	cin.ignore();

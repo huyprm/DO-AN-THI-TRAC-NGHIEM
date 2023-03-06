@@ -7,11 +7,10 @@
 #include"MonHoc.h"
 #include"DocGhiFile.h"
 #pragma comment(lib,"graphics.lib")
-void menu() {
+void testLOPHOC() {
 	bool kt = true;
 	DSLOP ds;
 	//doclop(ds);
-
 	system("cls");
 	cout << "================Menu===========";
 	cout << "\n\n\t1.them lop:";
@@ -28,14 +27,12 @@ void menu() {
 		switch (luachon)
 		{
 		case 1:
-			Themlop(ds);
+			/*Themlop(ds);*/
 			break;
 		case 2:
 			hieuchinhLop(ds);
 			system("pause");
 			break;
-
-
 		case 3:
 			xuatDSLOP(ds);
 			break;
@@ -52,20 +49,17 @@ void menu() {
 		}
 	}
 }
-void abc() {
+void testMONHOC() {
 	bool kt = true;
 	DSMH ds;
 	createDSMH(ds);
-	ifstream fileInput("DanhsachMonHoc.txt");
-	fileInput.open("DanhsachMonHoc.txt");
-	/*Doc_Danh_Sach_Mon_Hoc(fileInput, ds);*/
-	
+	Doc_Danh_Sach_Mon_Hoc(ds);
 	while (kt) {
 		cout << "================Menu===========";
 		cout << "\n\n\t1.them mon:";
-		cout << "\n\n\t2.hieu chinh thong tin mon hoc:";
+		cout << "\n\n\t4.hieu chinh thong tin mon hoc:";
 		cout << "\n\n\t3.xuat mon hoc:";
-		cout << "\n\n\t4. xoa mon hoc";
+		cout << "\n\n\t2. xoa mon hoc";
 		cout << "\n\n\t5.Thoat";
 		cout << "\n\n===================================\n";
 		int luachon;
@@ -74,41 +68,34 @@ void abc() {
 
 		switch (luachon)
 		{
-		/*case 1:
-			addMonHoc(ds);
-			break;*/
+		case 1:
+			/*addMonHoc(ds);*/
+			break;
 		case 2:
 			deleteMonHoc(ds);
 			break;
 		case 3:
 			printMonHoc(ds);
 			break;
-	/*	case 4:
-				XoaLop(ds);
-				system("pause");
-				break;*/
+		case 4:
+			adjustInfo_MonHoc(ds);
+			break;
 		case 5:
 			kt = false;
+			Luu_Danh_Sach_Mon_Hoc(ds);
 			break;
 		default:
 			break;
 		}
 	}
-	fileInput.close();
 }
 
 int main()
 {
-	bool kt = true;
-	DSMH ds;
+	/*DSMH ds;
 	createDSMH(ds);
 	Doc_Danh_Sach_Mon_Hoc(ds);
-	printMonHoc(ds);
-	cout << "-----------------------------\n";
-	deleteMonHoc(ds);
-	Luu_Danh_Sach_Mon_Hoc(ds);
-	/*adjustInfo_MonHoc(ds);
-	Luu_Danh_Sach_Mon_Hoc(ds);*/
-	printMonHoc(ds);
+	printMonHoc(ds);*/
+	testMONHOC();
 	return 0;
 }

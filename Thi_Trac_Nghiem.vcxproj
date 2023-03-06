@@ -131,6 +131,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CauHoiThi.h" />
+    <ClInclude Include="DanhSachDiem.h" />
     <ClInclude Include="DocGhiFile.h" />
     <ClInclude Include="MonHoc.h" />
     <ClInclude Include="Lop.h" />

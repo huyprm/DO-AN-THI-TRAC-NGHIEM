@@ -2,38 +2,40 @@
 #include<iostream>
 #include <cstddef>
 #include<iomanip>
+#include"DanhSachDiem.h"
 using namespace std;
 
 struct SinhVien {
-	char MASV[11]{};
-	char HO[51]{};
-	char TEN[20]{};
+	char MASV[11];
+	char HO[51];
+	char TEN[20];
 	int PHAI = 0;//0:male 1:female
-	char password[20]{};
-	//con tro ds diem
-
+	char password[20];
+	DIEM Diem;
 };
-
 struct nodeSinhVien {
 	SinhVien sv;
 	nodeSinhVien* next;
 };
 typedef nodeSinhVien* DSSV;
+
+
 void khoiTaoDSSV(DSSV& FirstSV) {
 	FirstSV = NULL;
 }
+
 int isEmpty(DSSV FirstSV) {
 	return (FirstSV == NULL ? 1 : 0);
 }
+
 void Insert_first(DSSV& FirstSV, SinhVien x) {
 	DSSV p = new nodeSinhVien();
 	p->sv = x;
 	p->next = FirstSV;
 	FirstSV = p;
 }
+
 void Insert_after(DSSV& FirstSV, SinhVien x) {
-
-
 	DSSV p;
 	if (FirstSV == NULL)
 		return;

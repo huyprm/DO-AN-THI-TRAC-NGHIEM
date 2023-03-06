@@ -16,14 +16,7 @@ using namespace std;
 
 //========== danh sach diem thi ==========
 
-struct DIEMMH {
-	string MAMH;
-	int DIEM;
-};
-struct List_DIEM {
-	DIEMMH diem;
-	DIEMMH* next;
-};
+
 
 //========== danh sach cau hoi thi ==========
 
