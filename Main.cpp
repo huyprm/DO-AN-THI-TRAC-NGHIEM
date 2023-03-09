@@ -7,17 +7,19 @@
 #include"MonHoc.h"
 #include"DocGhiFile.h"
 #pragma comment(lib,"graphics.lib")
+
 void testLOPHOC() {
 	bool kt = true;
 	DSLOP ds;
-	//doclop(ds);
-	system("cls");
+	createLOP(ds);
+	Doc_Danh_Sach_Lop_Hoc(ds);
 	cout << "================Menu===========";
 	cout << "\n\n\t1.them lop:";
 	cout << "\n\n\t2.hieu chinh sinh vien:";
 	cout << "\n\n\t3.xuat lop:";
 	cout << "\n\n\t4. xoa lop";
-	cout << "\n\n\t5.Thoat";
+	cout << "\n\n\t5.xuat danh sach theo nien khoa:";
+	cout << "\n\n\t6.Thoat";
 	cout << "\n\n===================================\n";
 
 	while (kt) {
@@ -27,28 +29,37 @@ void testLOPHOC() {
 		switch (luachon)
 		{
 		case 1:
-			/*Themlop(ds);*/
+			Lop * l;
+			nhaplophoc(l);
+			Themlop(ds,l);
 			break;
 		case 2:
 			hieuchinhLop(ds);
-			system("pause");
 			break;
 		case 3:
 			xuatDSLOP(ds);
 			break;
-			system("pause");
 		case 4:
 			XoaLop(ds);
-			system("pause");
 			break;
 		case 5:
+			char nienkhoa[20];
+			cout << "Nhap nien khoa can xem danh sach lop: ";
+			cin.ignore();
+			cin.getline(nienkhoa, sizeof(nienkhoa));
+			xoaSpace(nienkhoa);
+			xuatDSLOPtheokhoa(ds, nienkhoa);
+			break;
+		case 6:
 			kt = false;
+			Luu_Danh_Sach_Lop_Hoc(ds);
 			break;
 		default:
 			break;
 		}
 	}
 }
+
 void testMONHOC() {
 	bool kt = true;
 	DSMH ds;
@@ -66,10 +77,11 @@ void testMONHOC() {
 		cout << "Nhap lua chon: ";
 		cin >> luachon;
 
-		switch (luachon)
-		{
+		switch (luachon){
 		case 1:
-			/*addMonHoc(ds);*/
+			MONHOC mh;
+			nhapmonhoc(mh);
+			addMonHoc(ds, mh);
 			break;
 		case 2:
 			deleteMonHoc(ds);
@@ -90,12 +102,42 @@ void testMONHOC() {
 	}
 }
 
+void testSINHVIEN() {
+	bool kt = true;
+	DSSV ds;
+	createDSSV(ds);
+	Doc_Danh_Sach_Sinh_Vien(ds);
+	while (kt) {
+		cout << "================Menu===========";
+		cout << "\n\n\t1.them sinh vien";
+		cout << "\n\n\t2.xuat danh sach sinh vien";
+		cout << "\n\n\t3.Thoat";
+		cout << "\n\n===================================\n";
+		int luachon;
+		cout << "Nhap lua chon: ";
+		cin >> luachon;
+		
+		switch (luachon) {
+		case 1:
+			SinhVien sv;
+			nhapsinhvien(sv);
+			Insert_last(ds,sv);
+			break;
+		case 2:
+			xuatDSSV(ds);
+			break;
+		case 3:
+			kt = false;
+			Luu_Danh_Sach_Sinh_Vien(ds);
+			break;
+		default:
+			break;
+		}
+	}
+}
+
 int main()
 {
-	/*DSMH ds;
-	createDSMH(ds);
-	Doc_Danh_Sach_Mon_Hoc(ds);
-	printMonHoc(ds);*/
 	testMONHOC();
 	return 0;
 }

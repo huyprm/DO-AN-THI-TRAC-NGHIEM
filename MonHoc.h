@@ -71,28 +71,42 @@ void deleteMonHoc(DSMH& dsMonHoc) {
 			dsMonHoc.nodeMONHOC[i] = dsMonHoc.nodeMONHOC[i + 1];
 		}
 		dsMonHoc.n--;
+		cout << "Xoa thanh cong\n";
 	}
-	else return;
+	else {
+		cout << "Ma mon hoc khong ton tai\n";
+		return;
+	}
 }
 
 void adjustInfo_MonHoc(DSMH& dsMonHoc) {
 	char MaMH[15];
 	cout << "Nhap ma mon hoc can chinh sua: ";
 	cin >> MaMH;
+	InHoa(MaMH);
 	if (ktMa(dsMonHoc, MaMH)!=-1) {
 		int n = ktMa(dsMonHoc, MaMH);
-		string TenMH;
 		cout << "Nhap ma mon hoc: ";
 		cin >> MaMH;
 		strcpy_s(dsMonHoc.nodeMONHOC[n].MaMH,sizeof(dsMonHoc.nodeMONHOC[n].MaMH), MaMH);
 		cout << "Nhap ten mon hoc: ";
-		getline(cin, TenMH);
 		cin.ignore();
-		strcpy_s(dsMonHoc.nodeMONHOC[n].TenMH, sizeof(dsMonHoc.nodeMONHOC[n].TenMH),TenMH.c_str());
+		cin.getline(MaMH,sizeof(MaMH));//nhap ten vao bien MaMH
+		strcpy_s(dsMonHoc.nodeMONHOC[n].TenMH, sizeof(dsMonHoc.nodeMONHOC[n].TenMH),MaMH);
 	}
 	else {
-		cout << "Ma khong ton tai";
+		cout << "Ma khong ton tai\n";
 	}
+}
+
+//Nhap mon hoc tu ban phim
+void nhapmonhoc(MONHOC &mh) {
+	cout << "Nhap ma mon hoc: ";
+	cin >> mh.MaMH;
+	InHoa(mh.MaMH);
+	cout << "Nhap ten mon hoc: ";
+	cin.ignore();
+	cin.getline(mh.TenMH,sizeof(mh.TenMH));
 }
 
 

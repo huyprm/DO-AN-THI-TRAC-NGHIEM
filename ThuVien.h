@@ -2,83 +2,70 @@
 #include<iostream>
 #include<string.h>
 using namespace std;
-//ham in hoa tat ca cac ky tu
+
+
 void InHoa(char* s) {
     for (int i = 0; i < strlen(s); i++) {
         if (s[i] >= 97 && s[i] <= 122) s[i] -= 32;
     }
 }
-void InHoa(string& s) {
-    for (int i = 0; i < s.size(); i++) {
-        if (s[i] >= 97 && s[i] <= 122) s[i] -= 32;
-    }
-}
-// xoa ky tu  khoang trang du thua trong chuoi
+
 int xoa(char* a, int q)
 {
     int n = strlen(a), i;
-    for (i = q; i <= n; i++)
+    for (i = q; i < n-1; i++)
     {
         a[i] = a[i + 1];
     }
-    n--;
+    a[n - 1] = '\0';
     return 0;
 }
-int xoakhoangtrang(char* a)
-{
-    int i, n = strlen(a);
-    for (i = 0; i < n; i++)
-    {
-        if (a[0] == 32)
-        {
-            xoa(a, 0);
-            n--;
-        }
-        if (a[n - 1] == 32)
-        {
-            xoa(a, n - 1);
-            n--;
-        }
-        if (a[i] == 32 && a[i + 1] == 32)
-        {
-            xoa(a, i);
-            i--;
-            n--;
-        }
+
+void xoaSpace(char* s) {
+    int n = strlen(s);
+    for (int i = 0; i < n;) {
+        if (s[i] == ' ') xoa(s, i), n--;
+        else i++;
     }
-    return 0;
 }
+
+// Tat ca in hoa va khong co khoang trang VD: N21DCCN129
 void chuanHoa(char* s) {
     InHoa(s);
-    xoakhoangtrang(s);
+    xoaSpace(s);
 }
 
-//ham chi nhan chu va so. cac ky tu khac thi tu dong nuot
-void ChiNhanChuVaSo(char* s) {
-
+//xoa khoang trang cuoi chuoi
+void xoaKhoangTrangCuoi(char* str) {
+    if (str[strlen(str) - 1] == ' ') //xoa khoang trang cuoi chuoi
+        xoa(str, strlen(str) - 1);
 }
-//ham ve khung
-//void box(int x, int y,int w, int h) {
-//    for (int ix = x; ix <= x + w; ix++) {
-//        gotoxy(ix, y);
-//        cout << char(196);
-//        gotoxy(ix, y+h);
-//        cout << char(196);
-//}
-//    for (int iy = y; iy <= y + h; iy++) {
-//        gotoxy(x, iy);
-//        cout << char(179);
-//        gotoxy(x + w, iy);
-//        cout << char(179);
-//    }
-//    gotoxy(x, y);
-//    cout << char(218);
-//    gotoxy(x + w, y);
-//    cout << char(191);
-//    gotoxy(x, y + h);
-//    cout << char(192);
-//    gotoxy(x + w, y + h);
-//    cout << char(217);
-//}
-//
-//ham bao loi 
+
+//xoa khoang trang dau chuoi va ke nhau
+void xoaKhoangTrangDauVaKeNhau(char* str) {
+    for (int i = 0; i < strlen(str); i++)
+        if (str[i] == ' ' && str[i + 1] == ' ')  //Neu cac khoang trang ke nhau
+        {
+            xoa(str, i);
+            i--;
+        }
+    if (str[0] == ' ') //xoa khoang trang dau chuoi
+        xoa(str, 0);
+}
+/*
+    Xoa khoang trang va In hoa ky tu dau 
+*/
+void validateText(char s[]) {
+    xoaKhoangTrangDauVaKeNhau(s);
+    xoaKhoangTrangCuoi(s);
+
+    for (int i = 0; s[i] != '\0'; i++)  //in hoa chu cai dau cua tung tu`
+    {
+        if (s[i] >= 'A' && s[i] <= 'Z') s[i] += 32;
+        if (s[i - 1] == ' ' || i == 0)
+        {
+            if (s[i] >= 'a' && s[i] <= 'z')
+                s[i] = s[i] - 32;
+        }
+    }
+}

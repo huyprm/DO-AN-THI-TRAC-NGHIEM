@@ -39,7 +39,10 @@ void addTail(DIEM& p, DIEMMH d) {
 	else {
 		DIEM node = p;
 		while (node->next != NULL) node = node->next;
-		addAfter(p, d);
+		DIEM temp = new List_DIEM;
+		temp->diem = d;
+		temp->next = NULL;
+		node->next = temp;
 	}
 }
 

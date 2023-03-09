@@ -9,9 +9,9 @@ struct SinhVien {
 	char MASV[11];
 	char HO[51];
 	char TEN[20];
-	int PHAI = 0;//0:male 1:female
+	char PHAI[5];
 	char password[20];
-	DIEM Diem;
+	/*DIEM Diem=NULL;*/
 };
 struct nodeSinhVien {
 	SinhVien sv;
@@ -20,11 +20,11 @@ struct nodeSinhVien {
 typedef nodeSinhVien* DSSV;
 
 
-void khoiTaoDSSV(DSSV& FirstSV) {
+void createDSSV(DSSV& FirstSV) {
 	FirstSV = NULL;
 }
 
-int isEmpty(DSSV FirstSV) {
+bool isEmpty(DSSV FirstSV) {
 	return (FirstSV == NULL ? 1 : 0);
 }
 
@@ -50,11 +50,15 @@ void Insert_after(DSSV& FirstSV, SinhVien x) {
 void Insert_last(DSSV& FirstSV, SinhVien sv) {
 	if (isEmpty(FirstSV)) Insert_first(FirstSV, sv);
 	else {
-		DSSV p = new nodeSinhVien();
-		for (p = FirstSV; p->next != NULL; p = p->next);
-		Insert_after(p, sv);
+		DSSV p = FirstSV;
+		for (p ; p->next!= NULL; p = p->next);
+		DSSV temp = new nodeSinhVien;
+		temp->sv = sv;
+		temp->next = NULL;
+		p->next = temp;
 	}
 }
+
 //xoa node dau danh sach lien ket don
 void Deleta_first(DSSV& FirstSV) {
 	DSSV p;
@@ -65,6 +69,7 @@ void Deleta_first(DSSV& FirstSV) {
 		delete p;
 	}
 }
+
 void Delete_after(DSSV FirstSV)
 {
 	DSSV q;
@@ -78,6 +83,7 @@ void Delete_after(DSSV FirstSV)
 		delete q;
 	}
 }
+
 //tim kiem sinh vien theo masv 
 DSSV Search_info(DSSV FirstSV, SinhVien sv)
 {
@@ -86,6 +92,7 @@ DSSV Search_info(DSSV FirstSV, SinhVien sv)
 		if (p->sv.MASV == sv.MASV) return p;
 	return NULL;
 }
+
 int ktTrungMASV(DSSV FirstSV, char a[]) {
 	DSSV p;
 	for (p = FirstSV; p->next != NULL; p = p->next) {
@@ -93,14 +100,33 @@ int ktTrungMASV(DSSV FirstSV, char a[]) {
 	}
 	return 0;
 }
-void nhapSinhVien(DSSV& FirstSV) {
 
-}
 void xuatDSSV(DSSV FirstSV) {
-	DSSV p = new nodeSinhVien();
+	DSSV p = new nodeSinhVien;
 	cout << setw(10) << "MSSV" << setw(11) << "Ho" << setw(51) << "Ten" << setw(20) << "Phai" << endl;
 	for (p = FirstSV; p != NULL; p = p->next) {
 		cout << setw(10) << p->sv.MASV << setw(11) << p->sv.HO << setw(51) << p->sv.TEN << setw(20) << p->sv.PHAI << endl;
 	}
 }
+void nhapsinhvien(SinhVien& sv) {
+	cout << "Nhap ma so sinh vien: ";
+	cin >> sv.MASV;
+	InHoa(sv.MASV);
 
+	cout << "\nNhap ho sinh vien: ";
+	cin.ignore();
+	cin.getline(sv.HO, sizeof(sv.HO));
+	validateText(sv.HO);
+
+	cout << "\nNhap ten sinh vine: ";
+	cin >> sv.TEN;
+	validateText(sv.TEN);
+
+	cout << "\nNhap phai cua sinh vien: ";
+	cin >> sv.PHAI;
+	InHoa(sv.PHAI);
+	 
+	cout << "\nNhap password cua sinh vien: ";
+	cin >> sv.password;
+	xoaSpace(sv.password);
+}
