@@ -6,6 +6,8 @@
 #include"SinhVien.h"
 #include"MonHoc.h"
 #include"DocGhiFile.h"
+#include"DanhSachDiem.h"
+#include"Dohoa.h"
 #pragma comment(lib,"graphics.lib")
 
 void testLOPHOC() {
@@ -102,9 +104,11 @@ void testMONHOC() {
 	}
 }
 
+//dang co bug o testSINHVIEN
 void testSINHVIEN() {
 	bool kt = true;
 	DSSV ds;
+	SinhVien sv;
 	createDSSV(ds);
 	Doc_Danh_Sach_Sinh_Vien(ds);
 	while (kt) {
@@ -119,7 +123,7 @@ void testSINHVIEN() {
 		
 		switch (luachon) {
 		case 1:
-			SinhVien sv;
+			
 			nhapsinhvien(sv);
 			Insert_last(ds,sv);
 			break;
@@ -138,6 +142,6 @@ void testSINHVIEN() {
 
 int main()
 {
-	testMONHOC();
+	tao_khung_dang_nhap();
 	return 0;
 }

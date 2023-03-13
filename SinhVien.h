@@ -1,6 +1,5 @@
 #pragma once
 #include<iostream>
-#include <cstddef>
 #include<iomanip>
 #include"DanhSachDiem.h"
 using namespace std;
@@ -11,7 +10,7 @@ struct SinhVien {
 	char TEN[20];
 	char PHAI[5];
 	char password[20];
-	/*DIEM Diem=NULL;*/
+	DIEM Diem = NULL;
 };
 struct nodeSinhVien {
 	SinhVien sv;
@@ -108,6 +107,7 @@ void xuatDSSV(DSSV FirstSV) {
 		cout << setw(10) << p->sv.MASV << setw(11) << p->sv.HO << setw(51) << p->sv.TEN << setw(20) << p->sv.PHAI << endl;
 	}
 }
+
 void nhapsinhvien(SinhVien& sv) {
 	cout << "Nhap ma so sinh vien: ";
 	cin >> sv.MASV;
